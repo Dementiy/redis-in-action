@@ -19,3 +19,5 @@ def add_to_cart(conn, session, item, count):
         conn.hincrby('cart:' + session, item, count)
 ```
 
+Функции `clean_sessions`, `clean_full_sessions`, `cache_rows`, `rescale_viewed` больше не полагаются на глобальные переменные `LIMIT` и `QUIT`. Так как автор предполагает, что каждая функция будет работать как демон, то в качестве одного из аргументов (`quit`) передается событие `threading.Event`, которое должно быть установлено, чтобы поток завершил свою работу (см. примеры в тестах).
+
