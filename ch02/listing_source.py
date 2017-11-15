@@ -125,7 +125,7 @@ def cache_rows(conn, quit):
 
 
 def rescale_viewed(conn, quit):
-    while not quit:
+    while not quit.is_set():
         # Remove any item not in the top 20000 viewed items
         conn.zremrangebyrank('viewed:', 20000, -1)
         # Rescale all counts to be 1/2 of what they were before
